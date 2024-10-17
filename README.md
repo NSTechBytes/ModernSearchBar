@@ -13,6 +13,30 @@ Modern SearchBar is a minimalistic Rainmeter skin designed to provide a sleek an
 - **History Analyzer**: This skin contact with the google and load the recent google history in skin.
 - **Top Trends**: This skin load the top history of google in skin.
 
+
+## Installation
+
+1. Download the `.rmskin` file from the [releases](https://github.com/NSTechBytes/ModernSearchBar/releases) page.
+2. Double-click the `.rmskin` file to install.
+3. Use the Rainmeter manager to load the "Modern SearchBar" skin.
+
+## Customization
+
+To customize the skin:
+
+1. Open the Rainmeter manager.
+2. Right-click on **Modern SearchBar** and choose **Edit skin**.
+
+ ## Requirements
+
+- Rainmeter 4.0 or higher.
+- Windows 7/8/10/11.
+- > 6GB RAM, > 2 Core CPU (Optional)
+- For older systems, **Powershell v5.1 or newer** is required. Upgrade powershell **[here](https://docs.microsoft.com/en-us/powershell/scripting/windows-powershell/install/installing-windows-powershell?view=powershell-7.2#upgrading-existing-windows-powershell)**!
+
+
+
+
 ## Credits
 The following table lists out the external plugins used to make JaxCore and all of it's modules and widgets.
 | Plugin | Creator |
@@ -21,3 +45,18 @@ The following table lists out the external plugins used to make JaxCore and all 
 | [ConfigActive](https://forum.rainmeter.net/viewtopic.php?t=28720) | jsMorley | 
 | [Focus](https://forum.rainmeter.net/viewtopic.php?t=37989) | [@deathcrafter](https://github.com/deathcrafter) | 
 | [PowershellRM](https://github.com/khanhas/PowershellRM) | [@khanhas](https://github.com/khanhas) | 
+| [HotInput](https://forum.rainmeter.net/viewtopic.php?t=37989) | [@deathcrafter](https://github.com/deathcrafter) | 
+
+
+
+## Screenshots
+
+_Add some screenshots here to showcase the design of your skin._
+
+## How to Contribute
+
+If you have any suggestions or improvements, feel free to open an issue or submit a pull request.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

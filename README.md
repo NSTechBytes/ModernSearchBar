@@ -45,7 +45,7 @@ The following table lists out the external plugins used to make JaxCore and all 
 | [ConfigActive](https://forum.rainmeter.net/viewtopic.php?t=28720) | jsMorley | 
 | [Focus](https://forum.rainmeter.net/viewtopic.php?t=37989) | [@deathcrafter](https://github.com/deathcrafter) | 
 | [PowershellRM](https://github.com/khanhas/PowershellRM) | [@khanhas](https://github.com/khanhas) | 
-| [HotInput](| [Focus](https://forum.rainmeter.net/viewtopic.php?t=37989) | [@deathcrafter](https://github.com/deathcrafter) | ) | [@deathcrafter](https://github.com/deathcrafter) | 
+| [HotInput](https://github.com/deathcrafter/PluginHotInput) | [@deathcrafter](https://github.com/deathcrafter) | 
 
 
 

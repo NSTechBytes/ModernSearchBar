@@ -58,7 +58,7 @@ _Add some screenshots here to showcase the design of your skin._
 If you have any suggestions or improvements, feel free to open an issue or submit a pull request.
 
 ## Need assistance?
-* Join the [CoreCommunity Discord Server](https://discord.gg/fZejMxtMhf) for help
+* Join the [Discord Server](https://discord.gg/fZejMxtMhf) for help
 
  ## Say Hi!
 * Follow me on 👨‍💻 [Github](https://github.com/NSTechBytes) and stay updated on new things that I make

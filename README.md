@@ -38,7 +38,7 @@ To customize the skin:
 
 
 ## Credits
-The following table lists out the external plugins used to make JaxCore and all of it's modules and widgets.
+The following table lists out the external plugins used to make this skin.
 | Plugin | Creator |
 | ------------- | ------------- |
 | [FrostedGlass](https://forum.rainmeter.net/viewtopic.php?t=23106) | theAzack9 | 
@@ -57,6 +57,14 @@ _Add some screenshots here to showcase the design of your skin._
 
 If you have any suggestions or improvements, feel free to open an issue or submit a pull request.
 
+## Need assistance?
+* Join the [CoreCommunity Discord Server](https://discord.gg/fZejMxtMhf) for help
+
+ ## Say Hi!
+* Follow me on 👨‍💻 [Github](https://github.com/NSTechBytes) and stay updated on new things that I make
+* You can also watch me on 🐦 [DeviantArt](https://www.deviantart.com/nstechbytes) instead
+* Message me on 🗨️ [Discord](https://discord.gg/fZejMxtMhf)
+ 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the Appache License - see the [LICENSE](LICENSE) file for details.

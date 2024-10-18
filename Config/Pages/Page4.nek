@@ -1,0 +1,99 @@
+;============================================================================================================================;
+;                                                     Meter Styles                                                           ;
+;============================================================================================================================;
+
+[Not_Update]
+Shape=Rectangle 0,0,150,40,8 |StrokeWidth 0 | Fillcolor 56, 170, 26,100
+[Not_Update_Text]
+Text=Not Available
+
+[Available_Update]
+Shape=Rectangle 0,0,150,40,8 |StrokeWidth 0 | Fillcolor 194,37,34
+LeftMouseUpAction=[!CommandMeasure Execute_ps1 "Run"]
+[Available_Update_Text]
+Text=Update Now
+
+;============================================================================================================================;
+;                                                     Functions                                                              ;
+;============================================================================================================================;
+
+[WebParser]
+Measure=WebParser
+URL=https://raw.githubusercontent.com/NSTechBytes/#Skin.Name#/main/%40Resources/Version.nek
+RegExp==(.*)$
+FinishAction=[!UpdateMeasure mver]
+CodePage=65001
+UpdateDivider=0
+
+[mVer]
+Measure=WebParser
+CodePage=65001
+URL=[WebParser]
+StringIndex=1
+Ifcondition=mVer = #Version#
+IfTrueAction=[!SetVariable VersionStatus "0"][!UpdateMeter *][!Redraw]
+IfCondition2=mVer > #Version#
+IfTrueAction2=[!SetVariable VersionStatus "1"][!SetOption Update_Input_Shape MeterStyle "Available_Update"][!SetOption Update_Box_Text MeterStyle "Box_Text | Available_Update_Text"][!UpdateMeterGroup Update][!UpdateMeter *][!Redraw]
+IfCondition3=mVer < #Version#
+IfTrueAction3=[!SetVariable VersionStatus "2"][!UpdateMeter *][!Redraw]
+
+[Execute_ps1]
+Measure=Plugin
+Plugin=RunCommand
+Parameter=start powershell.exe -ExecutionPolicy Bypass -File "#@#Scripts\Powershell\Update_Helper.ps1" -skinName "#Skin.Name#"
+OutputType=ANSI
+OutputFile=
+DynamicVariables=1
+;============================================================================================================================;
+;                                                    Content                                                                 ;
+;============================================================================================================================;
+
+[Header_Main_String]
+Meter=String
+Text=Update
+MeterStyle=Header_Style_Text
+
+
+[Version_String]
+Meter=String
+Text=Current Version
+Y=150
+MeterStyle=Left_String
+[Version_Input_Shape]
+Meter=Shape
+X=460
+Y=145
+Shape=Rectangle 0,0,100,40,8 |StrokeWidth 0 | Extend This
+This=FillColor 17,24,39,100
+DynamicVariables=1
+MouseOverAction=[!SetOption #CURRENTSECTION# This "FillColor 17,24,39,50"][!UpdateMeter *][!Redraw]
+MouseLeaveAction=[!SetOption #CURRENTSECTION# This "FillColor 17,24,39,100"][!UpdateMeter *][!Redraw]
+
+[Version_Text]
+Meter=String
+Text=v\\#version#
+MeterStyle=Box_Text
+[Div_1]
+Meter=Shape
+MeterStyle=Divider
+
+
+[Update_String]
+Meter=String
+Text=Update Status
+MeterStyle=Left_String
+[Update_Input_Shape]
+Meter=Shape
+X=410
+Y=-8r
+DynamicVariables=1
+MeterStyle=Not_Update
+Group=Upate
+[Update_Box_Text]
+Meter=String
+X=(150/2)r
+W=150
+MeterStyle=Box_Text | Not_Update_Text
+Group=Upate
+DynamicVariables=1
+

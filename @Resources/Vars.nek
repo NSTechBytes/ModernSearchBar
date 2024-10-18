@@ -1,0 +1,14 @@
+[Variables]
+BackGorund_Color=255,255,255
+BackGorund_Opacity=100
+FontColor=10,10,10
+Scale=1
+FontFace=Ubuntu
+Skin_W=600
+Skin_H=90
+
+
+G.Img=80
+S.Img=50
+
+DarkMode=0

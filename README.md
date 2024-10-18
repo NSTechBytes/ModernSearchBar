@@ -55,9 +55,8 @@ The following table lists the external technologies used for Modern SearchBar.
 | [SQlite3](https://www.sqlite.org) | SQLite Consortium | 
 
 
-## Screenshots
-
-_Add some screenshots here to showcase the design of your skin._
+## Preview
+![Preview](https://github.com/NSTechBytes/Projects-Templates/blob/main/RainmeterSkins/ModernSearchBar/ModernSearchBar.png) <!-- Add a link to your image or GIF preview -->
 
 ## How to Contribute
 

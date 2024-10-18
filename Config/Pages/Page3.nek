@@ -1,0 +1,56 @@
+;============================================================================================================================;
+;                                                    Meter Styles                                                            ;
+;============================================================================================================================;
+[Social_Style]
+ImageName=#@#Images\Social\#CURRENTSECTION#.png
+W=60
+H=60
+X=20R
+Y=r
+DynamicVariables=1
+
+;============================================================================================================================;
+;                                                    Content                                                                 ;
+;============================================================================================================================;
+
+[Header_Main_String]
+Meter=String
+Text=About
+MeterStyle=Header_Style_Text
+
+[Text_1]
+Meter=String
+Text=Hi! I am Nasir Shahbaz a Developer#CRLF#and owner of NS Tech Bytes.This Project#CRLF#is Created to meet the requirement of#CRLF#the users.
+Y=150
+MeterStyle=Left_String
+[Text_2]
+Meter=String
+Y=20R
+Text=If you have any answer and question.#CRLF#Let me know in discord server, Feel Free#CRLF#to use this special Project.
+MeterStyle=Left_String
+
+
+[Social_Links_String]
+Meter=String
+Y=20R
+Text=Join me on following platforms.
+MeterStyle=Left_String
+[Youtube]
+Meter=Image
+X=r
+Y=20R
+MeterStyle=Social_Style
+LeftMouseUpAction=["https://www.youtube.com/@nstechbytes"]
+[Github]
+Meter=Image
+MeterStyle=Social_Style
+LeftMouseUpAction=["https://github.com/NSTechBytes"]
+[Deviantart]
+Meter=Image
+MeterStyle=Social_Style
+LeftMouseUpAction=["https://www.deviantart.com/nstechbytes"]
+[Discord]
+Meter=Image
+MeterStyle=Social_Style
+LeftMouseUpAction=["https://discord.gg/fZejMxtMhf"]
+

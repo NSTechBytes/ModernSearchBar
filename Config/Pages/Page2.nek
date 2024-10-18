@@ -1,0 +1,255 @@
+
+;============================================================================================================================;
+;                                                     Header                                                                 ;
+;============================================================================================================================;
+
+[Appearance_String]
+Meter=String
+Text=Appearance
+X=180
+Y=40
+FOntSize=40
+AntiAlias=1
+FontWeight=900
+FontFace=Ubuntu
+FontColor=255,255,255
+
+;============================================================================================================================;
+;                                                    Dark Mode                                                               ;
+;============================================================================================================================;
+
+[Dark_Mode_String]
+Meter=String
+Text=Dark Mode
+Y=150
+MeterStyle=Left_String
+
+[Dark_Mode_Image]
+Meter=Image
+ImageName=#@#Images\Config\on.png
+W=40
+H=40
+X=520
+Y=145
+LeftMouseUpAction=[!WriteKeyValue Variables DarkMode 0 "#@#Vars.nek"][!WriteKeyValue Variables FontColor  10,10,10 "#@#Vars.nek"][!WriteKeyValue Variables BackGorund_Color 255,255,255 "#@#Vars.nek"][!WriteKeyValue Variables BackGorund_Opacity 100 "#@#Vars.nek"][!WriteKeyValue Variables FontFace Ubuntu "#@#Vars.nek"][!WriteKeyValue Variables Scale 1 "#@#Vars.nek"][!RainmeterRefreshApp]
+
+[Dark_Mode_Image1]
+Meter=Image
+ImageName=#@#Images\Config\off.png
+W=40
+H=40
+X=520
+Y=145
+Hidden=#DarkMode#
+LeftMouseUpAction=[!WriteKeyValue Variables DarkMode 1 "#@#Vars.nek"][!WriteKeyValue Variables FontColor  255,255,255 "#@#Vars.nek"][!WriteKeyValue Variables BackGorund_Color 10,10,10 "#@#Vars.nek"][!WriteKeyValue Variables BackGorund_Opacity 100 "#@#Vars.nek"][!WriteKeyValue Variables FontFace Ubuntu "#@#Vars.nek"][!WriteKeyValue Variables Scale 1 "#@#Vars.nek"][!RainmeterRefreshApp]
+
+[Div_1]
+Meter=Shape
+MeterStyle=Divider
+
+;============================================================================================================================;
+;                                                     BackGround Color                                                       ;
+;============================================================================================================================;
+
+[BackGorund_Color_String]
+Meter=String
+Text=BackGround Color
+MeterStyle=Left_String
+
+[Skin_Input_Shape]
+Meter=Shape
+X=435
+Y=-8r
+Shape=Rectangle 0,0,130,40,8 |StrokeWidth 0 | Extend This 
+This= Fillcolor 17,24,39,100
+DynamicVariables=1
+LeftMouseUpAction=[!PluginBang "MeterInput ExecuteBatch 1"]
+MouseOverAction=[!SetOption #CURRENTSECTION# This "FillColor 17,24,39,50"][!UpdateMeter *][!Redraw]
+MouseLeaveAction=[!SetOption #CURRENTSECTION# This "FillColor 17,24,39,100"][!UpdateMeter *][!Redraw]
+
+
+[BackGorund_Color_Text]
+Meter=String
+Text=#BackGorund_Color#
+MeterStyle=Box_Text1
+
+[BackGorund_Color_Selector]
+Meter=Shape
+Shape=Rectangle 0,0,20,20,15 | StrokeWidth 0 | Fill Color #BackGorund_Color#
+DynamicVariables=1
+X=540
+Y=-10r
+LeftMouseUpAction=["#@#Addons\RainRGB4.exe" "VarName=BackGorund_Color" "FileName=#@#Vars.nek"][!Refresh *]
+
+[Div_2]
+Meter=Shape
+MeterStyle=Divider
+;============================================================================================================================;
+;                                                     BackGround Opacity                                                     ;
+;============================================================================================================================;
+
+[BackGorund_Opacity_String]
+Meter=String
+Text=BackGround Opacity
+MeterStyle=Left_String
+
+[BackGorund_Opacity_Shape]
+Meter=Shape
+X=465
+Y=-8r
+Shape=Rectangle 0,0,100,40,8 |StrokeWidth 0 | Extend This
+This= Fillcolor 17,24,39,100
+DynamicVariables=1
+LeftMouseUpAction=[!PluginBang "MeterInput3 ExecuteBatch 1"]
+MouseOverAction=[!SetOption #CURRENTSECTION# This "FillColor 17,24,39,50"][!UpdateMeter *][!Redraw]
+MouseLeaveAction=[!SetOption #CURRENTSECTION# This "FillColor 17,24,39,100"][!UpdateMeter *][!Redraw]
+
+
+[BackGorund_Opacity_Text]
+Meter=String
+Text=#BackGorund_Opacity#
+MeterStyle=Box_Text
+
+[Div_3]
+Meter=Shape
+Y=30r
+MeterStyle=Divider
+
+;============================================================================================================================;
+;                                                     Font Color                                                             ;
+;============================================================================================================================;
+
+[Font_Color_String]
+Meter=String
+Text=Font Color
+MeterStyle=Left_String
+
+[Font_Input_Shape]
+Meter=Shape
+X=435
+Y=-8r
+Shape=Rectangle 0,0,130,40,8 |StrokeWidth 0 | Extend This
+This= Fillcolor 17,24,39,100
+DynamicVariables=1
+LeftMouseUpAction=[!PluginBang "MeterInput2 ExecuteBatch 1"]
+MouseOverAction=[!SetOption #CURRENTSECTION# This "FillColor 17,24,39,50"][!UpdateMeter *][!Redraw]
+MouseLeaveAction=[!SetOption #CURRENTSECTION# This "FillColor 17,24,39,100"][!UpdateMeter *][!Redraw]
+
+
+[Font_Color_Text]
+Meter=String
+Text=#FontColor#
+MeterStyle=Box_Text1
+
+[Font_Color_Selector]
+Meter=Shape
+Shape=Rectangle 0,0,20,20,15 | StrokeWidth 0 | Fill Color #FontColor#
+DynamicVariables=1
+X=540
+Y=-10r
+LeftMouseUpAction=["#@#Addons\RainRGB4.exe" "VarName=FontColor" "FileName=#@#Vars.nek"][!Refresh *]
+
+[Div_4]
+Meter=Shape
+MeterStyle=Divider
+
+;============================================================================================================================;
+;                                                     Font Style                                                             ;
+;============================================================================================================================;
+
+[Font_Face_String]
+Meter=String
+Text=Font Style
+MeterStyle=Left_String
+
+[Font_Face_Shape]
+Meter=Shape
+X=465
+Y=-8r
+Shape=Rectangle 0,0,100,40,8 |StrokeWidth 0 | Extend This
+This= Fillcolor 17,24,39,100
+DynamicVariables=1
+LeftMouseUpAction=[!PluginBang "MeterInput4 ExecuteBatch 1"]
+MouseOverAction=[!SetOption #CURRENTSECTION# This "FillColor 17,24,39,50"][!UpdateMeter *][!Redraw]
+MouseLeaveAction=[!SetOption #CURRENTSECTION# This "FillColor 17,24,39,100"][!UpdateMeter *][!Redraw]
+
+
+[Font_Face_Text]
+Meter=String
+Text=#FontFace#
+MeterStyle=Box_Text
+
+;============================================================================================================================;
+;                                                     Measures                                                               ;
+;============================================================================================================================;
+[MeterInput]
+Measure=Plugin
+Plugin=InputText.dll
+StringAlign=Center
+FontFace=Ubuntu
+FontSize=8
+X=435
+Y=197
+W=100
+H=40
+AntiAlias=1
+FocusDismiss=1
+SolidColor=17,24,39
+FontColor=255,255,255
+Command1=[!WriteKeyValue Variables BackGorund_Color "$UserInput$""#@#Vars.nek"][!RainmeterRefreshApp]
+DefaultValue="#BackGorund_Color#"
+DynamicVariables=1
+
+[MeterInput2]
+Measure=Plugin
+Plugin=InputText.dll
+StringAlign=Center
+FontFace=Ubuntu
+FontSize=8
+X=435
+Y=320
+W=100
+H=40
+AntiAlias=1
+FocusDismiss=1
+SolidColor=17,24,39
+FontColor=255,255,255
+Command1=[!WriteKeyValue Variables FontColor "$UserInput$""#@#Vars.nek"][!RainmeterRefreshApp]
+DefaultValue="#FontColor#"
+DynamicVariables=1
+
+[MeterInput3]
+Measure=Plugin
+Plugin=InputText.dll
+StringAlign=Center
+FontFace=Ubuntu
+FontSize=15
+X=465
+Y=260
+W=100
+H=40
+AntiAlias=1
+FocusDismiss=1
+SolidColor=17,24,39
+FontColor=255,255,255
+Command1=[!WriteKeyValue Variables BackGorund_Opacity "$UserInput$""#@#Vars.nek"][!RainmeterRefreshApp]
+DefaultValue="#BackGorund_Opacity#"
+DynamicVariables=1
+
+[MeterInput4]
+Measure=Plugin
+Plugin=InputText.dll
+StringAlign=Center
+FontFace=Ubuntu
+FontSize=15
+X=465
+Y=385
+W=100
+H=40
+AntiAlias=1
+FocusDismiss=1
+SolidColor=17,24,39
+FontColor=255,255,255
+Command1=[!WriteKeyValue Variables FontFace "$UserInput$""#@#Vars.nek"][!RainmeterRefreshApp]
+DefaultValue="#FontFace#"
+DynamicVariables=1

@@ -1,3 +1,6 @@
+[Variables]
+run_update=0
+
 ;============================================================================================================================;
 ;                                                     Meter Styles                                                           ;
 ;============================================================================================================================;
@@ -9,7 +12,7 @@ Text=Not Available
 
 [Available_Update]
 Shape=Rectangle 0,0,150,40,8 |StrokeWidth 0 | Fillcolor 194,37,34
-LeftMouseUpAction=[!CommandMeasure Execute_ps1 "Run"]
+LeftMouseUpAction=[!CommandMeasure Update_Skin_Helper "Update_Skin"]
 [Available_Update_Text]
 Text=Update Now
 
@@ -31,19 +34,26 @@ CodePage=65001
 URL=[WebParser]
 StringIndex=1
 Ifcondition=mVer = #Version#
-IfTrueAction=[!SetVariable VersionStatus "0"][!UpdateMeter *][!Redraw]
+IfTrueAction=[!UpdateMeter *][!Redraw]
 IfCondition2=mVer > #Version#
-IfTrueAction2=[!SetVariable VersionStatus "1"][!SetOption Update_Input_Shape MeterStyle "Available_Update"][!SetOption Update_Box_Text MeterStyle "Box_Text | Available_Update_Text"][!UpdateMeterGroup Update][!UpdateMeter *][!Redraw]
+IfTrueAction2=[!SetOption Update_Input_Shape MeterStyle "Available_Update"][!SetOption Update_Box_Text MeterStyle "Box_Text | Available_Update_Text"][!UpdateMeterGroup Update][!UpdateMeter *][!Redraw]
 IfCondition3=mVer < #Version#
-IfTrueAction3=[!SetVariable VersionStatus "2"][!UpdateMeter *][!Redraw]
+IfTrueAction3=[!UpdateMeter *][!Redraw]
 
-[Execute_ps1]
+[Update_Skin_Helper]
 Measure=Plugin
-Plugin=RunCommand
-Parameter=COPY "#@#Scripts\Powershell\Update_Helper.ps1" "C:\Windows\Temp" && timeout /t 2 /nobreak & start powershell.exe -ExecutionPolicy Bypass -File "C:\Windows\Temp\Update_Helper.ps1" -skinName "Skin.Name"
-OutputType=ANSI
-OutputFile=
+Plugin=PowershellRM
+ScriptFile=#@#Scripts\Powershell\Update_Invoke.ps1
+ExecutionPolicy=Unrestricted
 DynamicVariables=1
+
+[Run_Update]
+Measure=Calc
+Formula=0
+IfCondition=#run_update#=1
+IfTrueAction=["C:\Windows\Temp\Update_Helper.bat"]
+DynamicVariables=1
+UpdateDivider=1
 ;============================================================================================================================;
 ;                                                    Content                                                                 ;
 ;============================================================================================================================;
@@ -68,7 +78,7 @@ This=FillColor 17,24,39,100
 DynamicVariables=1
 MouseOverAction=[!SetOption #CURRENTSECTION# This "FillColor 17,24,39,50"][!UpdateMeter *][!Redraw]
 MouseLeaveAction=[!SetOption #CURRENTSECTION# This "FillColor 17,24,39,100"][!UpdateMeter *][!Redraw]
-
+LeftMouseUpAction=
 [Version_Text]
 Meter=String
 Text=v\\#version#

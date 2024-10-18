@@ -47,6 +47,12 @@ The following table lists out the external plugins used to make this skin.
 | [PowershellRM](https://github.com/khanhas/PowershellRM) | [@khanhas](https://github.com/khanhas) | 
 | [HotInput](https://github.com/deathcrafter/PluginHotInput) | [@deathcrafter](https://github.com/deathcrafter) | 
 
+The following table lists the external technologies used for Modern SearchBar.
+
+| Technology | Creator |
+| ------------- | ------------- |
+| [Rain RGB](https://forum.rainmeter.net/viewtopic.php?t=6215) | jsMorley | 
+| [SQlite3](https://www.sqlite.org) | SQLite Consortium | 
 
 
 ## Screenshots

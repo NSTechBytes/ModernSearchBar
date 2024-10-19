@@ -1,98 +1,67 @@
-# Manually specify the path to sqlite3.exe if needed (or leave it empty to use the script's directory)
-$manualSqlitePath = $RmAPI.VariableStr('Sqlitepath')
+# Load the SQLite assembly from the specified path
+$SQLitePath = $RmAPI.VariableStr('sqlitepath')
+Add-Type -Path $SQLitePath
 
-# Check if manual path is specified, otherwise use the script directory
-if ($manualSqlitePath -eq "") {
-    # Get the directory of the current PowerShell script (where sqlite3.exe is located)
-    $scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
-    $sqlitePath = Join-Path $scriptDir "sqlite3.exe"
-} else {
-    # Use manually specified path
-    $sqlitePath = $manualSqlitePath
-}
-
-# Check if sqlite3.exe exists
-if (-Not (Test-Path $sqlitePath)) {
-    Write-Host "sqlite3.exe not found at: $sqlitePath. Please check the path."
-    exit
-}
-
-# Define the path to the Chrome History file (default path for Windows)
+# Set the path to the Chrome History database
 $chromeHistoryPath = "$env:LOCALAPPDATA\Google\Chrome\User Data\Default\History"
 
-# Check if the Chrome History file exists
+# Check if the History file exists
 if (-Not (Test-Path $chromeHistoryPath)) {
-    Write-Host "Google Chrome History file not found. Exiting script."
+    Write-Host "Chrome history file not found."
     exit
 }
 
-# Define the SQL query to get the last three Google search queries
-$query = @"
-SELECT url, datetime(last_visit_time/1000000-11644473600, 'unixepoch', 'localtime') as last_visit
-FROM urls
-WHERE url LIKE '%google.com/search?q=%'
-ORDER BY last_visit_time DESC
-LIMIT 3;
-"@
+# Create a connection to the SQLite database
+$connectionString = "Data Source=$chromeHistoryPath;Version=3;"
+$connection = New-Object System.Data.SQLite.SQLiteConnection($connectionString)
 
-# Create a temporary SQLite database copy since Chrome locks the database when it's running
-$tempHistoryPath = [System.IO.Path]::GetTempFileName()
-Copy-Item $chromeHistoryPath $tempHistoryPath -Force
-
-# Query the SQLite database using the local sqlite3.exe
 try {
-    $output = & "$sqlitePath" $tempHistoryPath $query
+    # Open the connection
+    $connection.Open()
+
+    # Query to get the most recent three titles from the history
+    $query = "SELECT title FROM urls ORDER BY last_visit_time DESC LIMIT 3"
+
+    # Create a command object
+    $command = $connection.CreateCommand()
+    $command.CommandText = $query
+
+    # Execute the query and get the results
+    $reader = $command.ExecuteReader()
+
+    # Initialize history variables
+    $history1 = $null
+    $history2 = $null
+    $history3 = $null
+
+    # Read the results and assign titles to variables
+    $count = 1
+    while ($reader.Read()) {
+        $title = $reader["title"]
+
+        # Assign the title to the corresponding history variable
+        switch ($count) {
+            1 { $history1 = $title }
+            2 { $history2 = $title }
+            3 { $history3 = $title }
+        }
+
+        $count++
+    }
+
+    # Output the history titles
+   # Write-Host "Recent Chrome History Titles:"
+   # Write-Host "1: $history1"
+   # Write-Host "2: $history2"
+   # Write-Host "3: $history3"
 } catch {
-    Write-Host "Error querying the Chrome History database."
-    exit
+    Write-Host "An error occurred: $_"
+} finally {
+    # Close the connection
+    if ($connection.State -eq 'Open') {
+        $connection.Close()
+    }
 }
-
-# Function to extract the Google search query from the URL
-function Extract-SearchQuery {
-    param (
-        [string]$url
-    )
-
-    # Use a regular expression to extract the search query after 'q='
-    if ($url -match 'q=([^&]+)') {
-        return [System.Uri]::UnescapeDataString($matches[1]) # Decode the query (in case of special characters)
-    }
-
-    return "Unknown search query"
-}
-
-# Initialize variables for history searches
-$history1 = ""
-$history2 = ""
-$history3 = ""
-
-# Check if we got any results
-if ($output) {
-    Write-Host "Recent Google Searches:"
-    $searches = $output -split "`n"
-
-    # Store each search in the respective variable
-    if ($searches.Count -ge 1) {
-        $parts = $searches[0] -split '\|'
-        $history1 = Extract-SearchQuery $parts[0]
-        Write-Host "Search 1: $history1 (Visited on: $($parts[1]))"
-    }
-    if ($searches.Count -ge 2) {
-        $parts = $searches[1] -split '\|'
-        $history2 = Extract-SearchQuery $parts[0]
-        Write-Host "Search 2: $history2 (Visited on: $($parts[1]))"
-    }
-    if ($searches.Count -ge 3) {
-        $parts = $searches[2] -split '\|'
-        $history3 = Extract-SearchQuery $parts[0]
-        Write-Host "Search 3: $history3 (Visited on: $($parts[1]))"
-    }
-} else {
-    Write-Host "No recent Google searches found."
-}
-
-# Clean up the temporary history file
-Remove-Item $tempHistoryPath
 
 # Function to execute Rainmeter Bangs
 function rmbang ($bang) {
@@ -108,11 +77,4 @@ rmbang "[!SetVariable History1 `"$history1`"]"
 rmbang "[!SetVariable History2 `"$history2`"]"
 rmbang "[!SetVariable History3 `"$history3`"]"
 
-rmbang "[!UpdateMeterGroup History]"
-
-# Display history variables
-Write-Host ""
-Write-Host "Stored in Variables:"
-Write-Host "History 1: $history1"
-Write-Host "History 2: $history2"
-Write-Host "History 3: $history3"
+rmbang "[!UpdateMeterGroup History]"#

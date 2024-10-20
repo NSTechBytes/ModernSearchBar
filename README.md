@@ -30,7 +30,7 @@ To customize the skin:
  ## Requirements
 
 - Rainmeter 4.5.20 or higher.
-- Windows 7/8/10/11.
+- Windows 10/11 or later.
 - > 6GB RAM, > 2 Core CPU (Optional).
 - For older systems, **Powershell v5.1 or newer** is required. Upgrade powershell **[here](https://docs.microsoft.com/en-us/powershell/scripting/windows-powershell/install/installing-windows-powershell?view=powershell-7.2#upgrading-existing-windows-powershell)**!
 - Google Chrome (Recommended).

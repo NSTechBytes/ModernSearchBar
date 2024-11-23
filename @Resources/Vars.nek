@@ -1,13 +1,13 @@
 [Variables]
-BackGorund_Color=255,255,255
+BackGorund_Color=10,10,10
 BackGorund_Opacity=100
-FontColor=10,10,10
+FontColor=255,255,255
 Scale=1
 FontFace=Ubuntu
 Skin_W=600
 Skin_H=90
 G.Img=80
 S.Img=50
-DarkMode=0
+DarkMode=1
 Skin.Name=ModernSearchBar
 sqlitepath=C:\Users\Nasir Shahbaz\Documents\Rainmeter\Skins\ModernSearchBar\@Resources\Addons\sqlite\sqlite64\System.Data.SQLite.dll
